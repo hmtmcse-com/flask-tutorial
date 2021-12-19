@@ -74,6 +74,31 @@ def form_data():
     return "Form Data: " + str(age) + ", " + country + ", " + str(salary)
 
 
+@app.route('/file-submission')
+def file_submission():
+    return '''
+               <form action="/file-data" method="POST" enctype="multipart/form-data">
+                   <div><label>File:</label><input type="file" name="file"></div>
+                   <input type="submit" value="Submit">
+               </form>
+               '''
+
+
+@app.route('/file-data', methods=["POST"])
+def file_data():
+    form_files = request.files
+    file_list = []
+    for file_name in form_files:
+        file = form_files[file_name]
+        file_list.append({
+            "inputName": file.name,
+            "filename": file.filename,
+            "contentType": file.content_type,
+            "mimetype": file.mimetype,
+        })
+    return {"fileInfoList": file_list}
+
+
 @app.route('/json-data', methods=["POST"])
 def json_data():
     json_data_object = request.get_json()
