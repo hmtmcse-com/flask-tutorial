@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtering Flash Message</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body>
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+    <div >
+      <ul>
+        {%- for msg in errors %}
+        <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+{% endwith %}
+
+</body>
+</html>
