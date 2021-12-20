@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>With Dictionary</title>
+</head>
+<body>
+
+<ul>
+    {% for person in persons -%}
+        <li>{{ person.name }} {{ person.age }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
